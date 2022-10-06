@@ -1,3 +1,13 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Enviormentals
 venv
+#Jetbrains
 .idea/
+# Images in src just to keep repo clean
 images/
