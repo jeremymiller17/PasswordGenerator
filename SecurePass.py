@@ -26,4 +26,4 @@ class SecurePass:
 
 generator = SecurePass()
 # Test creates a password that is 20 chars long, with symbols and upper/lowercase letters
-print(generator.create_password(length=20, symbols=True, uppercase=True))
+#print(generator.create_password(length=20, symbols=True, uppercase=True))
