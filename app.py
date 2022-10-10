@@ -4,10 +4,12 @@ import InjectPassword as ip
 """CAUTION: Saving a password anywhere is compromising. However, if you need to do it make it a tiny bit harder to spot.
 Once your .jpg of choice is injected move it out of the programs directory to a secure/secret location.
 """
+
+
 def main():
-    # images/ was created to keep repo clean. hide_secret/find_hidden can be ran with .jpgs in root directory
-    base_image = 'images/palletcleanser.jpg' # image to be changed
-    output_image = 'output.jpg' # The password injected image.
+    # Add any .jpg to root directory
+    base_image = 'images/palletcleanser.jpg'  # image to be changed
+    output_image = 'output.jpg'  # The password injected image.
 
     """NOTE: new_password is generated based off of 3 parameters, length, symbols, and uppercase.
     For strongest results generate a password with a length that is the maximum the platform allows,
