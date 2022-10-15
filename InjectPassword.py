@@ -8,6 +8,7 @@ def hide_secret(original, output, data: str):
         byte_data = data.encode()
         jpg.write(byte_data)
 
+
 # 'find_hidden' prints anything after the last byte of a .jpg
 def find_hidden(file):
     with open(file, 'rb') as jpg:
