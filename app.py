@@ -22,6 +22,7 @@ def password_generator():
     length = 20
     symbols = True
     uppercase = True
+    accepted_commands = ['-h', '-l', '-s', '-u']
 
     line_border = '*************************************************'
 
@@ -31,48 +32,65 @@ def password_generator():
 
     # Default if no arguments given
     if len(sys.argv) == 1:
-
-        print(f"{line_border}\nParameters:default\n")
+        print(f"{line_border}\nParameters:default")
+        print("$PASSWORD GENERATION$")
 
         # Password is generated with 20 chars, including symbols, and uppercase letters
         new_password = sp.create_password(length, symbols, uppercase)
-        print(f'New password with default parameters: \n{new_password}]n')
+        print(f'New password with default parameters- \nPassword: {new_password}')
+        print(line_border)
+
+        print("$IMAGE CREATION$")
+        print(f"Injecting {base_image}...\nNew image found at {output_image}")
         # baseimage is copied then injected with new_password in the root directory
         ip.hide_secret(base_image, output_image, new_password)
+        print(line_border)
 
     # If parameters entered in commandline
     if len(sys.argv) > 1:
-
-        print(f"{line_border}\nParameters:edited\n")
+        print("$PASSWORD GENERATION$")
+        print(f"{line_border}\nParameters:edited")
         # Iterates through sys.argv skipping initial argument
         for num in range(1, len(sys.argv)):
-
             args = sys.argv[num]
-            #TODO: Create help parameter
+
+            if args not in accepted_commands:
+                print(f"Sorry '{args}' is not valid command, use '-h' for command help!\n{line_border}")
+
+                return
+
+            # TODO: Create help parameter
             if args == '-h':
                 print("TODO:Command help section")
                 return
 
             if args == "-l":
-                length = int(input("Enter password length:"))
-                print(f"Password length set to {length}.\n")
+                length_input = ""
+                while not length_input.isdigit():
+                    length_input = input("Enter password length as positive integer:")
+
+                length = int(length_input)
+                print(f"Password length set to {length}.")
 
             if args == "-s":
                 symbols = False
-                print(f"Symbols set to false.\n")
+                print(f"Symbols set to false.")
 
             if args == "-u":
                 uppercase = False
-                print(f"Uppercase letters set to false.\n")
+                print(f"Uppercase letters set to false.")
 
         new_password = sp.create_password(length, symbols, uppercase)
-        print(f'Generated password based on parameters provided:\n{new_password}\n')
+        print(f'Generated password based on parameters provided-\nPassword: {new_password}\n')
+        print(line_border)
 
-    print(line_border)
+        print("$IMAGE CREATION$")
+        print(f"Injecting {base_image}...\nNew image found at '{output_image}'")
+        ip.hide_secret(base_image, output_image, new_password)
+        print(line_border)
 
-    ip.hide_secret(base_image, output_image, new_password)
 
-
+# TODO: Add '-r' to allow 'find_hidden from command line
 # find_hidden reads the bytes of the .jpg file and looks for hidden text.
 # ip.find_hidden('output.jpg')
 
