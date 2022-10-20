@@ -8,4 +8,4 @@ This a quick and easy password generator to run on the command line. By default 
   
 # How To Use
  
-  Test
+  *TODO*
